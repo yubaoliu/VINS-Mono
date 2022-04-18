@@ -1,0 +1,35 @@
+version: '2.3'
+services:
+  VINS-Mono:
+    image: vins_mono
+    # container_name: root_ros_noetic
+    build:
+        context: .
+        # dockerfile: Dockerfile
+        # args:
+        #     CUDA_VERSION: 11.3.0-cudnn8
+        #     ROS_DISTRO: kinetic
+        #     # ubuntu_version: 16.04
+    runtime: nvidia
+    stdin_open: true
+    tty: true
+    privileged: true
+    command:
+        - xterm
+        # - lxterminal
+    environment:
+        - DISPLAY
+        - QT_X11_NO_MITSHM=1
+    devices:
+        - /dev/dri
+    volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix:rw
+        - ~/.Xauthority:/root/.Xauthority
+        - ..:/root/catkin_ws/src/VINS-Mono/
+        - ~/Data/Dataset:/root/Dataset
+        # - /usr/lib/nvidia-cuda-toolkit:/usr/lib/nvidia-cuda-toolkit
+        # - docker_vins_mono:/root
+    entrypoint: /root/entrypoint.sh
+
+# volumes:
+#     docker_vins_mono:
