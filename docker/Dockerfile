@@ -1,4 +1,5 @@
-FROM  yubao/ubuntu16:cuda11.3.0
+# FROM  yubao/ubuntu16:cuda11.3.0
+FROM  yubao/ubuntu18:cuda11.3.0
 MAINTAINER yubao.liu.ra@tut.jp
 
 WORKDIR /root/catkin_ws
